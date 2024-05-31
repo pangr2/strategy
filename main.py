@@ -1,16 +1,13 @@
-# This is a sample Python script.
+from core.configs.config import global_cfg
+from core.cmd_args import parse_args, parse_client_cfg
+if __name__ == "__main__":
+    # load the configuration file
+    init_cfg = global_cfg.clone()
+    args = parse_args()
+    if args.cfg_file:
+        init_cfg.merge_from_file(args.cfg_file)
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+    # freeze the configuration
+    init_cfg.freeze()
 
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    from core.simulators.simulator import get_simulator

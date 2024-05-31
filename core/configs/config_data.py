@@ -2,7 +2,7 @@
 import logging
 
 from core.configs.config import CN
-from utils.register import register_config
+from core.register import register_config
 
 logger = logging.getLogger(__name__)
 
